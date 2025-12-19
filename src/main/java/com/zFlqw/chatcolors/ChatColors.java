@@ -99,16 +99,24 @@ public class ChatColors extends JavaPlugin implements Listener {
         reloadConfig();
         enableColor = getConfig().getBoolean("enable-color", true);
         defaultColor = getConfig().getString("default-color", "&f");
-        language = getConfig().getString("language", "zh").toLowerCase();
+        language = normalizeLanguage(getConfig().getString("language", "zh"));
+    }
+
+    private String normalizeLanguage(String configuredLanguage) {
+        if (configuredLanguage == null || configuredLanguage.isBlank()) {
+            return "zh";
+        }
+        return configuredLanguage.toLowerCase(Locale.ROOT);
     }
 
     private void loadPlayerColors() {
         playerColors.clear();
-        if (playerDataConfig.contains("colors")) {
-            for (String uuidStr : playerDataConfig.getConfigurationSection("colors").getKeys(false)) {
+        org.bukkit.configuration.ConfigurationSection colorsSection = playerDataConfig.getConfigurationSection("colors");
+        if (colorsSection != null) {
+            for (String uuidStr : colorsSection.getKeys(false)) {
                 try {
                     UUID uuid = UUID.fromString(uuidStr);
-                    String color = playerDataConfig.getString("colors." + uuidStr);
+                    String color = colorsSection.getString(uuidStr);
                     if (color != null) {
                         playerColors.put(uuid, color);
                     }
