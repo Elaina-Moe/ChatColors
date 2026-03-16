@@ -64,8 +64,10 @@ chatcolor.use:
   default: true
 chatcolor.admin:
   description: 允许管理员重新加载配置文件
-  default: false
+  default: op
 ```
+
+说明：运行时默认值以 `plugin.yml` 与内置 `config.yml` 为准。
 
 ---
 

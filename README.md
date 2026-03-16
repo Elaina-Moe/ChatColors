@@ -28,12 +28,12 @@ ChatColors is a lightweight Minecraft plugin that allows players to use color co
 ```yaml
 enable-color: true
 default-color: "&f"
-language: "en"
+language: "zh"
 ```
 
 - `enable-color`: Enable or disable colored chat
 - `default-color`: Default color code for chat
-- `language`: Language file to use (`en` or `zh`)
+- `language`: Language file to use (`zh` or `en`), default is `zh`
 
 ---
 
@@ -64,8 +64,10 @@ chatcolor.use:
   default: true
 chatcolor.admin:
   description: Allows admin to use the reload command to reload configuration.
-  default: false
+  default: op
 ```
+
+Note: runtime defaults are defined by `plugin.yml` and bundled `config.yml`.
 
 ---
 

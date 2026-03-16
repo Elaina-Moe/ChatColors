@@ -45,6 +45,7 @@ public class ChatColors extends JavaPlugin implements Listener {
     // Auto-save configuration constants
     private static final long SAVE_INTERVAL_TICKS = 20L * 60; // 1 minute in ticks
     private static final long SAVE_INITIAL_DELAY_TICKS = 20L * 60; // 1 minute initial delay
+    private static final String PLAYER_COLORS_PATH = "colors";
 
     private static final List<String> COLOR_CODES = Collections.unmodifiableList(Arrays.asList(
             "&0", "&1", "&2", "&3", "&4", "&5", "&6", "&7", "&8", "&9",
@@ -111,7 +112,7 @@ public class ChatColors extends JavaPlugin implements Listener {
 
     private void loadPlayerColors() {
         playerColors.clear();
-        org.bukkit.configuration.ConfigurationSection colorsSection = playerDataConfig.getConfigurationSection("colors");
+        org.bukkit.configuration.ConfigurationSection colorsSection = playerDataConfig.getConfigurationSection(PLAYER_COLORS_PATH);
         if (colorsSection != null) {
             for (String uuidStr : colorsSection.getKeys(false)) {
                 try {
@@ -133,10 +134,10 @@ public class ChatColors extends JavaPlugin implements Listener {
             return; // No changes to save
         }
 
-        playerDataConfig.set("colors", null);
+        playerDataConfig.set(PLAYER_COLORS_PATH, null);
 
         for (Map.Entry<UUID, String> entry : playerColors.entrySet()) {
-            playerDataConfig.set("colors." + entry.getKey().toString(), entry.getValue());
+            playerDataConfig.set(PLAYER_COLORS_PATH + "." + entry.getKey(), entry.getValue());
         }
         try {
             playerDataConfig.save(playerDataFile);
@@ -147,7 +148,9 @@ public class ChatColors extends JavaPlugin implements Listener {
     }
 
     private void startAutoSaveTask() {
-        saveTask = getServer().getScheduler().runTaskTimerAsynchronously(this,
+        // Run save on the main thread to avoid concurrent access to shared YamlConfiguration
+        // between periodic save and /chatcolor reload.
+        saveTask = getServer().getScheduler().runTaskTimer(this,
                 this::savePlayerColors, SAVE_INITIAL_DELAY_TICKS, SAVE_INTERVAL_TICKS);
     }
 
@@ -303,6 +306,6 @@ public class ChatColors extends JavaPlugin implements Listener {
      * Generates a colored sample text for display purposes
      */
     private String generateColorSample(String colorCode) {
-        return colorize(colorCode) + ChatColor.stripColor(colorCode);
+        return colorize(colorCode + "Sample");
     }
 }
