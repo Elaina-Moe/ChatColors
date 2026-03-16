@@ -36,11 +36,7 @@ public class Messages {
     }
 
     public void reload(String lang) {
-        String normalizedLang = normalizeLanguage(lang);
-        if (normalizedLang.equals(this.lang)) {
-            return;
-        }
-        this.lang = normalizedLang;
+        this.lang = normalizeLanguage(lang);
         load();
     }
 

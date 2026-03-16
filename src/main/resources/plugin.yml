@@ -1,6 +1,6 @@
 name: ChatColors
 main: com.zFlqw.chatcolors.ChatColors
-version: 1.2.1
+version: 1.2.2
 api-version: 1.18
 author: zFlqw
 description: >
@@ -9,7 +9,7 @@ description: >
 commands:
   chatcolor:
     description: Manage ChatColor plugin commands
-    usage: /chatcolor <reload|set> [color]
+    usage: /chatcolor <reload|set|gui> [color]
     permission: chatcolor.use
     permission-message: You do not have permission to use this command.
     aliases: [cc]

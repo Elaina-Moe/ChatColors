@@ -9,6 +9,7 @@ command-help:
   - "%prefix%Usage:"
   - "/chatcolor set <color code> - Set your chat color"
   - "/chatcolor reload - Reload configuration"
+  - "/chatcolor gui - Open color picker GUI"
 
 config-reloaded: "%prefix%Configuration has been reloaded."
 usage-set: "%prefix%Usage: /chatcolor set <color code>"

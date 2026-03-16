@@ -53,6 +53,7 @@ resources/
 |----------------------|-------------------|-----------------|
 | `/chatcolor reload`  | 重载配置文件      | `chatcolor.admin` |
 | `/chatcolor set 颜色代码`| 设置默认聊天颜色  | `chatcolor.use` |
+| `/chatcolor gui`      | 打开颜色选择界面   | `chatcolor.use` |
 
 ---
 
@@ -64,8 +65,10 @@ chatcolor.use:
   default: true
 chatcolor.admin:
   description: 允许管理员重新加载配置文件
-  default: false
+  default: op
 ```
+
+说明：运行时默认值以 `plugin.yml` 与内置 `config.yml` 为准。
 
 ---
 
