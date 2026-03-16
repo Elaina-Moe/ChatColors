@@ -53,6 +53,7 @@ resources/
 |----------------------|-------------------|-----------------|
 | `/chatcolor reload`  | 重载配置文件      | `chatcolor.admin` |
 | `/chatcolor set 颜色代码`| 设置默认聊天颜色  | `chatcolor.use` |
+| `/chatcolor gui`      | 打开颜色选择界面   | `chatcolor.use` |
 
 ---
 

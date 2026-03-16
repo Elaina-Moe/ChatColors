@@ -9,7 +9,7 @@ description: >
 commands:
   chatcolor:
     description: Manage ChatColor plugin commands
-    usage: /chatcolor <reload|set> [color]
+    usage: /chatcolor <reload|set|gui> [color]
     permission: chatcolor.use
     permission-message: You do not have permission to use this command.
     aliases: [cc]

@@ -53,6 +53,7 @@ resources/
 |---------------------------|--------------------------------|------------------|
 | `/chatcolor reload`       | Reload config and lang files   | `chatcolor.admin`  |
 | `/chatcolor set <color>`  | Set default chat color         | `chatcolor.use`  |
+| `/chatcolor gui`          | Open color picker GUI          | `chatcolor.use`  |
 
 ---
 
